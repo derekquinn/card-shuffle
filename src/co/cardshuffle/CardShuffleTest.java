@@ -60,9 +60,9 @@ public class CardShuffleTest {
 		assertFalse(players[3].getHand() == players[4].getHand());
 	}
 	
-	// Verify game results for flush
+	// Verify game results for flush if true
 	@Test
-	public void VerifyFlush() {
+	public void verifyFlushTrue() {
 		
 		Player mockPlayer = new Player();
 		
@@ -75,6 +75,85 @@ public class CardShuffleTest {
 		mockPlayer.setHand(mockHand);
 		assertEquals(DeckUtility.checkFlush(mockPlayer), true);
 			
+	}
+	
+	// Verify game results for flush if false
+	@Test
+	public void verifyFlushFalse() {
+		
+		Player mockPlayer = new Player();
+		
+		Card cardA = new Card(Suit.CLUB, Rank.ACE);
+		Card cardB = new Card(Suit.HEART, Rank.EIGHT);
+		Card cardC = new Card(Suit.HEART, Rank.NINE);
+		Card cardD = new Card(Suit.HEART, Rank.FOUR);
+		Card cardE = new Card(Suit.HEART, Rank.KING);
+		Card[] mockHand = {cardA, cardB, cardC, cardD, cardE};	
+		mockPlayer.setHand(mockHand);
+		assertEquals(DeckUtility.checkFlush(mockPlayer), false);
+			
+	}
+	@Test
+	public void verifyPairTrue() {
+		Player mockPlayer = new Player();
+		
+		Card cardA = new Card(Suit.HEART, Rank.ACE);
+		Card cardB = new Card(Suit.SPADE, Rank.ACE);
+		Card cardC = new Card(Suit.CLUB, Rank.NINE);
+		Card cardD = new Card(Suit.CLUB, Rank.FOUR);
+		Card cardE = new Card(Suit.DIAMOND, Rank.KING);
+		
+		Card[] mockHand = {cardA, cardB, cardC, cardD, cardE};	
+		mockPlayer.setHand(mockHand);
+		assertTrue(DeckUtility.checkPair(mockPlayer));
+		
+	}
+	@Test
+	public void verifyPairFalse() {
+		Player mockPlayer = new Player();
+		
+		Card cardA = new Card(Suit.HEART, Rank.TWO);
+		Card cardB = new Card(Suit.SPADE, Rank.ACE);
+		Card cardC = new Card(Suit.CLUB, Rank.NINE);
+		Card cardD = new Card(Suit.CLUB, Rank.FOUR);
+		Card cardE = new Card(Suit.DIAMOND, Rank.KING);
+		
+		Card[] mockHand = {cardA, cardB, cardC, cardD, cardE};	
+		mockPlayer.setHand(mockHand);
+		assertFalse(DeckUtility.checkPair(mockPlayer));
+		
+	}
+	
+	@Test
+	public void verifyThreeOfAKindTrue() {
+		Player mockPlayer = new Player();
+		
+		Card cardA = new Card(Suit.HEART, Rank.TWO);
+		Card cardB = new Card(Suit.SPADE, Rank.TWO);
+		Card cardC = new Card(Suit.CLUB, Rank.TWO);
+		Card cardD = new Card(Suit.CLUB, Rank.FOUR);
+		Card cardE = new Card(Suit.DIAMOND, Rank.KING);
+		
+		Card[] mockHand = {cardA, cardB, cardC, cardD, cardE};	
+		mockPlayer.setHand(mockHand);
+		assertTrue(DeckUtility.checkThreeOfAKind(mockPlayer));
+		
+	}
+	
+	@Test
+	public void verifyThreeOfAKindFalse() {
+		Player mockPlayer = new Player();
+		
+		Card cardA = new Card(Suit.HEART, Rank.ACE);
+		Card cardB = new Card(Suit.SPADE, Rank.FIVE);
+		Card cardC = new Card(Suit.CLUB, Rank.TWO);
+		Card cardD = new Card(Suit.CLUB, Rank.FOUR);
+		Card cardE = new Card(Suit.DIAMOND, Rank.KING);
+		
+		Card[] mockHand = {cardA, cardB, cardC, cardD, cardE};	
+		mockPlayer.setHand(mockHand);
+		assertFalse(DeckUtility.checkThreeOfAKind(mockPlayer));
+		
 	}
 	
 }

@@ -45,10 +45,11 @@ public class DeckUtility {
 		return players;
 
 	}
+
 	// Check to see if all suits match on a given player's hand.
 	public static boolean checkFlush(Player player) {
 		Card[] playerHand = player.getHand();
-		
+
 		if (playerHand[0].getSuit() == playerHand[1].getSuit() && playerHand[0].getSuit() == playerHand[2].getSuit()
 				&& playerHand[0].getSuit() == playerHand[3].getSuit()
 				&& playerHand[0].getSuit() == playerHand[4].getSuit()) {
@@ -56,6 +57,38 @@ public class DeckUtility {
 		} else {
 			return false;
 		}
+	}
+
+	// Check player hand for pair
+	public static boolean checkPair(Player player) {
+		Card[] playerHand = player.getHand();
+
+		for (int i = 0; i <= 4; i++) {			
+			for (int j = 4; j >= 0; j--) {				
+				if (j != i && playerHand[i].getRank() == playerHand[j].getRank()) {			
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+	
+	// Check player hand for three of a kind 
+	public static boolean checkThreeOfAKind(Player player) {
+		
+		Card[] playerHand = player.getHand();
+
+		for (int i = 0; i <= 4; i++) {			
+			for (int j = 4; j >= 0; j--) {
+				for (int k = 0; k<=4; k++) {
+				if (j != i && k !=i && k !=j && playerHand[i].getRank() == playerHand[j].getRank() &&
+					playerHand[i].getRank() == playerHand[k].getRank() && playerHand[k].getRank() == playerHand[j].getRank()) {						
+					return true;
+				}}
+			}
+		}
+		return false;
+		
 		
 	}
 }
