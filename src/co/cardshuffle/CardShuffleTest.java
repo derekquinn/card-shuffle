@@ -20,7 +20,6 @@ public class CardShuffleTest {
 	// Cards are truly random and unique.
 	@Test
 	public void randomCard() {
-
 		// Draw six random cards from the deck
 		int cardA = random.nextInt(d.SIZE);
 		int cardB = random.nextInt(d.SIZE);
@@ -28,12 +27,12 @@ public class CardShuffleTest {
 		int cardD = random.nextInt(d.SIZE);
 		int cardE = random.nextInt(d.SIZE);
 		int cardF = random.nextInt(d.SIZE);
+		
 		// Verify that the cards are all unique
 		assertFalse(unshuffledDeck[cardA] == unshuffledDeck[cardB]);
 		assertFalse(unshuffledDeck[cardC] == unshuffledDeck[cardD]);
 		assertFalse(unshuffledDeck[cardE] == unshuffledDeck[cardF]);
-	}
-	
+	}	
 	// Integrity of shuffle deck method in DeckOfCards class 
 	@Test
 	public void shuffleDeck() {
@@ -43,7 +42,6 @@ public class CardShuffleTest {
 		assertFalse(shuffledDeck == unshuffledDeck);
 
 	}
-	
 	// Compare player hands for uniqueness 
 	@Test 
 	public void compareHands() {
@@ -61,4 +59,22 @@ public class CardShuffleTest {
 		assertFalse(players[2].getHand() == players[4].getHand());
 		assertFalse(players[3].getHand() == players[4].getHand());
 	}
+	
+	// Verify game results for flush
+	@Test
+	public void VerifyFlush() {
+		
+		Player mockPlayer = new Player();
+		
+		Card cardA = new Card(Suit.HEART, Rank.ACE);
+		Card cardB = new Card(Suit.HEART, Rank.EIGHT);
+		Card cardC = new Card(Suit.HEART, Rank.NINE);
+		Card cardD = new Card(Suit.HEART, Rank.FOUR);
+		Card cardE = new Card(Suit.HEART, Rank.KING);
+		Card[] mockHand = {cardA, cardB, cardC, cardD, cardE};	
+		mockPlayer.setHand(mockHand);
+		assertEquals(DeckUtility.checkFlush(mockPlayer), true);
+			
+	}
+	
 }
