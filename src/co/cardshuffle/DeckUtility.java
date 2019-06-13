@@ -15,7 +15,8 @@ public class DeckUtility {
 		DeckOfCards deck = new DeckOfCards();
 		deck.shuffle();
 		Card[] shuffledDeck = deck.getDeckOfCards();
-
+		// Deal cards in a fashion similar to real life rotation of cards at a card
+		// table.
 		Card[] playerOneHand = { shuffledDeck[0], shuffledDeck[5], shuffledDeck[10], shuffledDeck[15],
 				shuffledDeck[20] };
 		playerOne.setHand(playerOneHand);
@@ -63,32 +64,57 @@ public class DeckUtility {
 	public static boolean checkPair(Player player) {
 		Card[] playerHand = player.getHand();
 
-		for (int i = 0; i <= 4; i++) {			
-			for (int j = 4; j >= 0; j--) {				
-				if (j != i && playerHand[i].getRank() == playerHand[j].getRank()) {			
+		for (int i = 0; i <= 4; i++) {
+			for (int j = 4; j >= 0; j--) {
+				if (j != i && playerHand[i].getRank() == playerHand[j].getRank()) {
 					return true;
 				}
 			}
 		}
 		return false;
 	}
-	
-	// Check player hand for three of a kind 
+
+	// Check player hand for three of a kind
 	public static boolean checkThreeOfAKind(Player player) {
-		
+
 		Card[] playerHand = player.getHand();
 
-		for (int i = 0; i <= 4; i++) {			
+		for (int i = 0; i <= 4; i++) {
 			for (int j = 4; j >= 0; j--) {
-				for (int k = 0; k<=4; k++) {
-				if (j != i && k !=i && k !=j && playerHand[i].getRank() == playerHand[j].getRank() &&
-					playerHand[i].getRank() == playerHand[k].getRank() && playerHand[k].getRank() == playerHand[j].getRank()) {						
-					return true;
-				}}
+				for (int k = 0; k <= 4; k++) {
+					if (j != i && k != i && k != j && playerHand[i].getRank() == playerHand[j].getRank()
+							&& playerHand[i].getRank() == playerHand[k].getRank()
+							&& playerHand[k].getRank() == playerHand[j].getRank()) {
+						return true;
+					}
+				}
 			}
 		}
 		return false;
-		
-		
+
 	}
-}
+
+	// Determine if player has full house (Pair + Three of a kind)
+	public static boolean checkFullHouse(Player player) {
+
+		Card[] playerHand = player.getHand();
+
+		for (int i = 0; i <= 4; i++) {
+			for (int j = 4; j >= 0; j--) {
+				for (int k = 0; k <= 4; k++) {
+					for (int l = 4; l >= 0; l--) {
+						for(int m=0; m<=4; m++) {
+						if (j != i && k != i && k != j && m!=l && m!=k && m!=j && m!=i 
+								&& playerHand[i].getRank() == playerHand[j].getRank()
+								&& playerHand[i].getRank() == playerHand[k].getRank()
+								&& playerHand[k].getRank() == playerHand[j].getRank()
+								&& playerHand[m].getRank() == playerHand[l].getRank()) {
+							return true;
+						}
+					}
+				}
+
+			}
+		}
+	} return false;
+}}

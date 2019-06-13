@@ -62,7 +62,7 @@ public class CardShuffleTest {
 	
 	// Verify game results for flush if true
 	@Test
-	public void verifyFlushTrue() {
+	public void flushTrue() {
 		
 		Player mockPlayer = new Player();
 		
@@ -79,7 +79,7 @@ public class CardShuffleTest {
 	
 	// Verify game results for flush if false
 	@Test
-	public void verifyFlushFalse() {
+	public void flushFalse() {
 		
 		Player mockPlayer = new Player();
 		
@@ -94,7 +94,7 @@ public class CardShuffleTest {
 			
 	}
 	@Test
-	public void verifyPairTrue() {
+	public void pairTrue() {
 		Player mockPlayer = new Player();
 		
 		Card cardA = new Card(Suit.HEART, Rank.ACE);
@@ -109,7 +109,7 @@ public class CardShuffleTest {
 		
 	}
 	@Test
-	public void verifyPairFalse() {
+	public void pairFalse() {
 		Player mockPlayer = new Player();
 		
 		Card cardA = new Card(Suit.HEART, Rank.TWO);
@@ -125,7 +125,7 @@ public class CardShuffleTest {
 	}
 	
 	@Test
-	public void verifyThreeOfAKindTrue() {
+	public void threeOfAKindTrue() {
 		Player mockPlayer = new Player();
 		
 		Card cardA = new Card(Suit.HEART, Rank.TWO);
@@ -141,7 +141,7 @@ public class CardShuffleTest {
 	}
 	
 	@Test
-	public void verifyThreeOfAKindFalse() {
+	public void threeOfAKindFalse() {
 		Player mockPlayer = new Player();
 		
 		Card cardA = new Card(Suit.HEART, Rank.ACE);
@@ -153,6 +153,39 @@ public class CardShuffleTest {
 		Card[] mockHand = {cardA, cardB, cardC, cardD, cardE};	
 		mockPlayer.setHand(mockHand);
 		assertFalse(DeckUtility.checkThreeOfAKind(mockPlayer));
+		
+	}
+	
+	@Test
+	public void fullHouseTrue() {
+		
+		Player mockPlayer = new Player();
+		
+		Card cardA = new Card(Suit.HEART, Rank.ACE);
+		Card cardB = new Card(Suit.SPADE, Rank.ACE);
+		Card cardC = new Card(Suit.CLUB, Rank.ACE);
+		Card cardD = new Card(Suit.CLUB, Rank.FOUR);
+		Card cardE = new Card(Suit.DIAMOND, Rank.FOUR);
+		
+		Card[] mockHand = {cardA, cardB, cardC, cardD, cardE};	
+		mockPlayer.setHand(mockHand);
+		assertTrue(DeckUtility.checkFullHouse(mockPlayer));
+		
+	}
+	@Test
+	public void fullHouseFalse() {
+		
+		Player mockPlayer = new Player();
+		
+		Card cardA = new Card(Suit.HEART, Rank.ACE);
+		Card cardB = new Card(Suit.SPADE, Rank.ACE);
+		Card cardC = new Card(Suit.CLUB, Rank.ACE);
+		Card cardD = new Card(Suit.CLUB, Rank.JACK);
+		Card cardE = new Card(Suit.DIAMOND, Rank.QUEEN);
+		
+		Card[] mockHand = {cardA, cardB, cardC, cardD, cardE};	
+		mockPlayer.setHand(mockHand);
+		assertFalse(DeckUtility.checkFullHouse(mockPlayer));
 		
 	}
 	
