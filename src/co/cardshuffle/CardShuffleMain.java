@@ -1,17 +1,17 @@
 package co.cardshuffle;
 
+
 public class CardShuffleMain {
 
 	public static void main(String[] Args) {
 
-		DeckOfCards doc = new DeckOfCards();
+		Player[] gamePlayers = DeckUtility.dealCardsToPlayers();
 
-		Card[] testDeck = doc.getDeckOfCards();
-
-		for (int i = 0; i < 52; i++) {
-			System.out.println(testDeck[i]);
-
+		for (int i = 0; i < 5; i++) {
+			System.out.println(gamePlayers[i].toString());
 		}
+		
+		
 
 	}
 

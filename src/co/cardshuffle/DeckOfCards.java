@@ -29,7 +29,7 @@ public class DeckOfCards {
 	}
 	
 	// Utilizing Random class and swap method to shuffle deck.
-	public void shuffleDeck() {
+	public void shuffle() {
 		Random random = new Random();
 
 		for (int i = 0; i < SIZE; i++) {
