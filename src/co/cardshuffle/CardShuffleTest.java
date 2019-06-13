@@ -188,5 +188,4 @@ public class CardShuffleTest {
 		assertFalse(DeckUtility.checkFullHouse(mockPlayer));
 		
 	}
-	
 }
