@@ -11,30 +11,32 @@ public class DeckUtility {
 	public static Player[] dealCardsToPlayers() {
 
 		Player[] players = new Player[5];
+		Card[] playerOneHand = new Card[5];
+		Card[] playerTwoHand = new Card[5];
+		Card[] playerThreeHand = new Card[5];
+		Card[] playerFourHand = new Card[5];
+		Card[] playerFiveHand = new Card[5];
 
 		DeckOfCards deck = new DeckOfCards();
 		deck.shuffle();
 		Card[] shuffledDeck = deck.getDeckOfCards();
 		// Deal cards in a fashion similar to real life rotation of cards at a card
 		// table.
-		Card[] playerOneHand = { shuffledDeck[0], shuffledDeck[5], shuffledDeck[10], shuffledDeck[15],
-				shuffledDeck[20] };
+
+		int card = 0;
+			for (int i = 0; i <= 20; i += 5) {		
+				playerOneHand[card] = shuffledDeck[i];
+				playerTwoHand[card] = shuffledDeck[i + 1];
+				playerThreeHand[card] = shuffledDeck[i + 2];
+				playerFourHand[card] = shuffledDeck[i + 3];
+				playerFiveHand[card] = shuffledDeck[i + 4];
+				card++;
+			}
+
 		playerOne.setHand(playerOneHand);
-
-		Card[] playerTwoHand = { shuffledDeck[1], shuffledDeck[6], shuffledDeck[11], shuffledDeck[16],
-				shuffledDeck[21] };
 		playerTwo.setHand(playerTwoHand);
-
-		Card[] playerThreeHand = { shuffledDeck[2], shuffledDeck[7], shuffledDeck[12], shuffledDeck[17],
-				shuffledDeck[22] };
 		playerThree.setHand(playerThreeHand);
-
-		Card[] playerFourHand = { shuffledDeck[3], shuffledDeck[8], shuffledDeck[13], shuffledDeck[18],
-				shuffledDeck[23] };
 		playerFour.setHand(playerFourHand);
-
-		Card[] playerFiveHand = { shuffledDeck[4], shuffledDeck[9], shuffledDeck[14], shuffledDeck[19],
-				shuffledDeck[24] };
 		playerFive.setHand(playerFiveHand);
 
 		players[0] = playerOne;
@@ -103,18 +105,20 @@ public class DeckUtility {
 			for (int j = 4; j >= 0; j--) {
 				for (int k = 0; k <= 4; k++) {
 					for (int l = 4; l >= 0; l--) {
-						for(int m=0; m<=4; m++) {
-						if (j != i && k != i && k != j && m!=l && m!=k && m!=j && m!=i 
-								&& playerHand[i].getRank() == playerHand[j].getRank()
-								&& playerHand[i].getRank() == playerHand[k].getRank()
-								&& playerHand[k].getRank() == playerHand[j].getRank()
-								&& playerHand[m].getRank() == playerHand[l].getRank()) {
-							return true;
+						for (int m = 0; m <= 4; m++) {
+							if (j != i && k != i && k != j && m != l && m != k && m != j && m != i
+									&& playerHand[i].getRank() == playerHand[j].getRank()
+									&& playerHand[i].getRank() == playerHand[k].getRank()
+									&& playerHand[k].getRank() == playerHand[j].getRank()
+									&& playerHand[m].getRank() == playerHand[l].getRank()) {
+								return true;
+							}
 						}
 					}
-				}
 
+				}
 			}
 		}
-	} return false;
-}}
+		return false;
+	}
+}

@@ -16,7 +16,7 @@ public class CardShuffleTest {
 	public void deckSize() {
 		assertEquals(52, unshuffledDeck.length);
 	}
-
+ 
 	// Cards are truly random and unique.
 	@Test
 	public void randomCard() {
@@ -42,9 +42,9 @@ public class CardShuffleTest {
 		assertFalse(shuffledDeck == unshuffledDeck);
 
 	}
-	// Compare player hands for uniqueness 
+	// Compare player 0 hand to other players for uniqueness 
 	@Test 
-	public void compareHands() {
+	public void compareHandToOtherPlayers() {
 		
 		Player[] players = DeckUtility.dealCardsToPlayers();
 		
@@ -58,6 +58,20 @@ public class CardShuffleTest {
 		assertFalse(players[2].getHand() == players[3].getHand());
 		assertFalse(players[2].getHand() == players[4].getHand());
 		assertFalse(players[3].getHand() == players[4].getHand());
+	}
+	
+	// Compare player 0 cards in hand to itself for uniqueness 
+	
+	@Test
+	public void checkPlayerZeroForDuplicateCards() {
+		Player[] player = DeckUtility.dealCardsToPlayers();
+		Card[] playerOneHand = player[0].getHand(); 
+		
+		assertFalse(playerOneHand[0] == playerOneHand[1]);
+		assertFalse(playerOneHand[0] == playerOneHand[2]);
+		assertFalse(playerOneHand[0] == playerOneHand[3]);
+		assertFalse(playerOneHand[0] == playerOneHand[4]);
+		
 	}
 	
 	// Verify game results for flush if true
